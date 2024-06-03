@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Product List Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>    
+    <!--Header Section -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+            <span class="navbar-brand" style="color: #333; font-weight: bold;">CLUB MONACO</span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active"><a class="nav-link" href="#">NEW ARRIVALS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">WOMEN</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">MEN</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">SALE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">FEATURES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">HOLIDAY SHOP</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="icons-bar">
+                    <i class="fa-regular fa-heart stayIcon1"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-regular fa-user stayIcon2"></i>                    
+                    <i class="fas fa-shopping-cart"><span class="cart-count">10</span></i>
+                </div>                
+            </div>
+      </nav> 
+    </header>
+    
+
+
+
+
+    <!--Main Section --> 
+    <main>
+      <div class="promo-banner">
+        FREE SHIPPING ON ORDERS OF $150 OR MORE WITH CODE <strong>FREESHIP</strong>. <a href="#" style="color: black; text-decoration: underline;">See details</a>
+      </div>
+    
+      <nav class="navbar2">
+        <ul class="navbar-nav2">
+            <li class="nav-item2"><a class="nav-link2" href="#">WOMEN</a></li>
+            <li class="nav-item2"><a class="nav-link2" href="#">Clothing</a></li>
+            <li class="nav-item2"><a class="nav-link2 thirdWord" href="#">Dresses</a></li>
+        </ul>
+      </nav>
+
+      <div class="container">
+      <div class="row">
+        <div class="List">
+            <div class="col-12 full-width-button">
+                <button id="refineButton" onclick="toggleFilterPanel()">Refine</button>
+            </div>
+            <div class="filter-panel5" id="filterPanel">   
+                <div class="filter-header5">
+                    <span class="title5">REFINE</span>
+                    <div class="filter-controls5">
+                        <button class="filter-btn clear" onclick="clearFilters()">Clear</button>
+                        <button class="filter-btn done" onclick="closeFilters()">Done</button>
+                    </div>
+                </div>
+                <div class="filter-section5">
+                    <select onchange="sortProducts()">
+                        <option value="default">Sort By</option>
+                    </select>
+                </div>
+                <div class="filter-category5">
+                    <div class="type-title-container5">
+                        <h3>Type</h3>
+                        <i class="fas fa-minus" onclick="toggleTypeOptions()"></i>
+                    </div>
+                    <hr>
+                    <div class="filter-group5">
+                        <label><input type="checkbox" name="type" value="maxi" onchange="filterProducts()"> Maxi (19)</label>
+                        <label><input type="checkbox" name="type" value="midi" onchange="filterProducts()"> Midi (9)</label>
+                        <label><input type="checkbox" name="type" value="mini" onchange="filterProducts()"> Mini (19)</label>
+                        <label><input type="checkbox" name="type" value="romper" onchange="filterProducts()"> Romper (9)</label>
+                        <label><input type="checkbox" name="type" value="jumpsuit" onchange="filterProducts()"> Jumpsuit (19)</label>
+                    </div>
+                    <div class="type-container5">
+                        <h4>Size <i class="fas fa-plus"></i></h4>
+                    </div>
+                    <hr>
+                    <div class="type-container5">
+                        <h4>Color <i class="fas fa-plus"></i></h4>
+                    </div>
+                    <hr>
+                    <div class="type-container5">
+                        <h4>Price <i class="fas fa-plus"></i></h4>
+                    </div>
+                    <hr>
+
+                </div>
+                <div class="item-count">99 items</div>
+                <div class="selected-filters5">
+                    <div class="selected-item5" style="display: none;">
+                        <span>Maxi</span>
+                        <button onclick="removeFilter(this)">×</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-3">
+                <div class="filters filters-panel" id="filtersMenu">
+                    <h3 id="toggleFilters" style="cursor: pointer;">HIDE FILTERS</h3>
+                    <div class="filter-category">
+                        <div class="type-container">
+                            <h4>Type</h4>
+                            <i class="fa-solid fa-minus"></i>
+                        </div>
+                        <hr>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="maxi" class="checkbox-custom">
+                                <label for="maxi">Maxi <span class="num">(19)</span></label>    
+                            </li>
+                            <li>
+                                <input type="checkbox" id="midi" class="checkbox-custom">
+                                <label for="midi">Midi <span class="num">(9)</span></label></li>
+                            <li>
+                                <input type="checkbox" id="mini" class="checkbox-custom">
+                                <label for="mini">Mini <span class="num">(19)</span></label></li>
+                            <li>
+                                <input type="checkbox" id="romper" class="checkbox-custom">
+                                <label for="romper">Romper <span class="num">(9)</span></label></li>
+                            <li>
+                                <input type="checkbox" id="jumpsuit" class="checkbox-custom">
+                                <label for="jumpsuit">Jumpsuit <span class="num">(19)</span></label></li>
+                        </ul>
+                        <div class="type-container">
+                            <h4>Size</h4>
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <hr>
+                        <div class="type-container">
+                            <h4 class="h4New">Color</h4>
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <hr>
+                        <div class="type-container">
+                            <h4 class="h4New">Price</h4>
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+        </div>
+
+
+        <div class="col-9 expand">
+                <div class="products">
+                    <div class="header-container">
+                        <h2 class="title">Dresses</h2>
+                        <div class="pagination-container">
+                            <div class="pagination-info">
+                                <span>1-30 of 99 Items</span>
+                                <a href="#" class="view-all">View All</a>
+                            </div>
+                            <div class="sorting">
+                                <select id="sortby">
+                                    <option value="newest">Newest</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+    
+    
+                    <div class="row">
+                        <div class="col-md-4 product-col">
+                            <div class="card">
+                                <img class="card-img-top" src="images/img1.jpg" alt="Dress">
+                                <div class="card-body">
+                                    <h6>New</h6>
+                                    <h6 class="card-title">Nomnomn Sweater Dress</h6>
+                                    <p class="card-text">$99.99 – $199.99</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 product-col">
+                            <div class="card">
+                                <img class="card-img-top" src="images/img2.jpg" alt="Dress">
+                                <div class="card-body">
+                                    <h6>New</h6>
+                                    <h6 class="card-title">Shoanah Dress</h6>
+                                    <p class="card-text">$99.99 – $199.99</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 product-col product-col5">
+                            <div class="card">
+                                <img class="card-img-top" src="images/img3.jpg" alt="Dress">
+                                <div class="card-body">
+                                    <h6>New</h6>
+                                    <h6 class="card-title">Nomnomn Sweater Dress</h6>
+                                    <p class="card-text">$99.99 – $199.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="downImg">
+                            <div class="col-md-6 product-col">
+                                <div class="card">
+                                    <img class="card-img-top" src="images/img4.jpg" alt="Dress">
+                                    <div class="card-body">
+                                        <h6>New</h6>
+                                        <h6 class="card-title">Shoanah Dress</h6>
+                                        <p class="card-text">$99.99 – $199.99</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 product-col">
+                                <div class="card">
+                                    <img class="card-img-top" src="images/img5.jpg" alt="Dress">
+                                    <div class="card-body">
+                                        <h6>New</h6>
+                                        <h6 class="card-title">Nomnomn Sweater Dress</h6>
+                                        <p class="card-text">$99.99 – $199.99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pagination">
+                            <div class="paginationInfo">
+                                <span>Showing 1-30 of 99 Items</span>
+                                <a href="#" class="viewAll">View All</a>
+                            </div>
+                            <button class="buttonShow">SHOW MORE</button>
+                        </div>
+    
+                        <hr>
+    
+                        <div class="container2 text-center py-4">
+                            <h2 class="mb-3">Best Dresses</h2>
+                            <p>Is there anything better than the perfect dress? Be it a flowy maxi dress that skims all the
+                                right places or a little black dress you'd never dare to ditch, you look and feel your best
+                                in your favorite dress. The search never stops for the perfect dress. We've curated our
+                                dresses to help you find one that works with your personal style. Discover dresses for every
+                                season, and for any occasion. Wear them to work or out on the town. Shop higher necklines,
+                                daring low necklines, high waists and airy tunics.</p>
+                        </div>
+    
+                    </div>
+                </div>
+        </div>
+
+      </div>
+      </div>
+
+      <div class="social-icons">
+        <span class="hashtag">#CLUBMONACO</span>
+        <a href="#" class="mr-2"><img src="images/instagram.svg" alt="Instagram"></a>
+        <a href="#" class="mr-2"><img src="images/facebook.svg" alt="Facebook"></a>
+        <a href="#" class="mr-2"><img src="images/twitter.svg" alt="Twitter"></a>
+        <a href="#" class="mr-2"><img src="images/pinterest.svg" alt="Pinterest"></a>
+      </div>
+    </main>
+
+
+
+
+    
+    <!--Footer Section -->
+    <footer>
+      <div class="footer">     
+        <div class="container">
+            <div class="row footer-text ">
+                <div class="col-md-3">
+                    <h5>SUPPORT</h5>
+                    <ul class="list-unstyled">
+                        <li>Email Us</li>
+                        <li>FAQ</li>
+                        <li>Gift Cards</li>
+                        <li>Tel. 1-888-733-6410</li>
+                        <li>Student Discount</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>SHIPPING & RETURNS</h5>
+                    <ul class="list-unstyled">
+                        <li>Track Your Order</li>
+                        <li>Shipping Rates</li>
+                        <li>Returns & Exchanges</li>
+                        <li>International Shipping</li>
+                        <li>Refer-A-Friend</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>ABOUT CLUB</h5>
+                    <ul class="list-unstyled">
+                        <li>Our Story</li>
+                        <li>Store Locator</li>
+                        <li>Events</li>
+                        <li>Careers</li>
+                        <li>California Transparency Act</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>LET'S KEEP IN TOUCH.</h5>
+                    <form class="subscribe-form d-flex">
+                        <input type="email" class="form-control" placeholder="ENTER EMAIL ADDRESS">
+                        <button type="submit" class="btn subscribe-section bg-dark text-white">SUBMIT</button>
+                    </form>
+                    <p>Sign up to receive emails on everything new, special offers, and exclusive events.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="endLine">
+            <p class="copyright">
+                © 2018 Club Monaco Corp.   <!--   © => alt+0169   -->
+            </p>
+            <ul class="footer-links">
+                <li><a href="#">Site Map</a></li>
+                <li><a href="#">Privacy Notice</a></li>
+                <li><a href="#">Terms of Use</a></li>
+                <li>
+                    <div class="location">
+                       <a href="#" class="country">United States <i class="fa-solid fa-globe"></i></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+      </div> 
+    </footer> 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="JS/script.js"></script>
+</body>
+</html>
